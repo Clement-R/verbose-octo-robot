@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode m_rightKey;
 
     [SerializeField] private float m_speed = 2f;
+    [SerializeField] private bool m_debug = false;
 
     private Rigidbody2D m_rb2d;
     private Vector2 m_movement = new Vector2();
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour
             m_movement += new Vector2(-1f, 0f);
         else if (Input.GetKey(m_rightKey))
             m_movement += new Vector2(1f, 0f);
+
+        if(m_debug)
+        {
+            Debug.DrawRay(transform.position, transform.right * 5f, Color.blue);
+        }
     }
 
     private void FixedUpdate()
