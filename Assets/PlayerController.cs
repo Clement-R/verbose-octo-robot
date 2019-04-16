@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         m_movement = Vector2.zero;
 
-        if(m_isDashing)
+        if(!m_isDashing)
         {
             if (Input.GetKey(m_upKey))
                 m_movement += new Vector2(0f, 1f);
