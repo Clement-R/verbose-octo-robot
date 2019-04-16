@@ -133,7 +133,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_42
   - first:
       213: -537612006178497969
-    second: 0x72_16x16DungeonTileset.v4_43
+    second: katana
   - first:
       213: -4596637015259150736
     second: 0x72_16x16DungeonTileset.v4_44
@@ -181,7 +181,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_58
   - first:
       213: 4409113622068996459
-    second: 0x72_16x16DungeonTileset.v4_59
+    second: katanabot
   - first:
       213: 4574055825614841866
     second: 0x72_16x16DungeonTileset.v4_60
@@ -1727,15 +1727,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_43
+      name: katana
       rect:
         serializedVersion: 2
         x: 176
-        y: 208
+        y: 192
         width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2063,7 +2063,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_59
+      name: katanabot
       rect:
         serializedVersion: 2
         x: 176
