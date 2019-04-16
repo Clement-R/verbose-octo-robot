@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum EDirection
+    {
+        LEFT = 0,
+        RIGHT = 1
+    }
+
     [SerializeField] private KeyCode m_upKey;
     [SerializeField] private KeyCode m_downKey;
     [SerializeField] private KeyCode m_leftKey;
@@ -21,11 +27,14 @@ public class PlayerController : MonoBehaviour
     private float m_lastDash = 0f;
 
     private Rigidbody2D m_rb2d;
+    private SpriteRenderer m_sr;
     private Vector2 m_movement = new Vector2();
+    private EDirection m_facingDirection = EDirection.RIGHT;
 
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
+        m_sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -40,10 +49,21 @@ public class PlayerController : MonoBehaviour
                 m_movement += new Vector2(0f, -1f);
 
             if (Input.GetKey(m_leftKey))
+            {
+                m_facingDirection = EDirection.LEFT;
                 m_movement += new Vector2(-1f, 0f);
+            }
             else if (Input.GetKey(m_rightKey))
+            {
+                m_facingDirection = EDirection.RIGHT;
                 m_movement += new Vector2(1f, 0f);
+            }
         }
+
+        if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
+            m_sr.flipX = true;
+        else if(m_facingDirection == EDirection.RIGHT && m_sr.flipX)
+            m_sr.flipX = false;
 
         if (Input.GetKey(m_dashKey) && !m_isDashing && (Time.time >= m_lastDash + m_dashCooldown))
         {
@@ -77,6 +97,6 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        m_rb2d.AddForce(m_dashForce, ForceMode2D.Force);
+        m_rb2d.AddForce(m_dashForce * (m_facingDirection == EDirection.RIGHT ? 1f : -1f), ForceMode2D.Force);
     }
 }
