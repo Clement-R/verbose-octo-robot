@@ -26,6 +26,16 @@ public class PlayerController : MonoBehaviour
     private bool m_isDashing;
     private float m_lastDash = 0f;
 
+    [Header("Jump")]
+    [SerializeField] private KeyCode m_jumpKey;
+    [SerializeField] float m_jumpHeight = 0f;
+    [SerializeField] float m_jumpLength = 0f;
+
+    private float m_initialVelocity = 0f;
+    private float m_gravity = 0f;
+    private bool m_grounded = true;
+    private bool m_jump = false;
+
     private Rigidbody2D m_rb2d;
     private SpriteRenderer m_sr;
     private Vector2 m_movement = new Vector2();
@@ -60,6 +70,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(m_jumpKey))
+            m_jump = true;
+
         if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
             m_sr.flipX = true;
         else if(m_facingDirection == EDirection.RIGHT && m_sr.flipX)
@@ -88,6 +101,12 @@ public class PlayerController : MonoBehaviour
             if (Time.time >= m_lastDash + m_dashDuration)
                 m_isDashing = false;
         }
+
+        if (m_jump)
+        {
+            m_jump = false;
+            Jump();
+        }
     }
 
     private void Move(Vector2 p_movement)
@@ -98,5 +117,16 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         m_rb2d.AddForce(m_dashForce * (m_facingDirection == EDirection.RIGHT ? 1f : -1f), ForceMode2D.Force);
+    }
+
+    private void Jump()
+    {
+        m_initialVelocity = (2f * m_jumpHeight) / (m_jumpLength / 2f);
+        m_gravity = (-2f * m_jumpHeight) / ((m_jumpLength / 2f) * (m_jumpLength / 2f));
+        m_rb2d.gravityScale = m_gravity / Physics2D.gravity.y;
+
+        m_rb2d.AddForce(new Vector2(0f, m_initialVelocity), ForceMode2D.Impulse);
+
+        Debug.Log(m_rb2d.gravityScale);
     }
 }
