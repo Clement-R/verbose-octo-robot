@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EDirection
+{
+    LEFT = 0,
+    RIGHT = 1
+}
+
 public class PlayerController : MonoBehaviour
 {
-    public enum EDirection
-    {
-        LEFT = 0,
-        RIGHT = 1
-    }
 
     [SerializeField] private KeyCode m_upKey;
     [SerializeField] private KeyCode m_downKey;
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D m_rb2d;
     private SpriteRenderer m_sr;
     private Vector2 m_movement = new Vector2();
-    private EDirection m_facingDirection = EDirection.RIGHT;
+    public EDirection m_facingDirection = EDirection.RIGHT;
 
     void Start()
     {
