@@ -2,3 +2,5 @@
 
 // Speed and Movement
 spd = 2;
+
+flipX = 1;

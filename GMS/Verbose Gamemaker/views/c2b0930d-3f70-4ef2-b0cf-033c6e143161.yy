@@ -8,7 +8,7 @@
         "0eca7545-5462-40f0-a84b-d46345ad55ae"
     ],
     "filterType": "GMSprite",
-    "folderName": "player",
+    "folderName": "Player",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
