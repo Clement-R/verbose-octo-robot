@@ -43,10 +43,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_movement = new Vector2();
     public EDirection m_facingDirection = EDirection.RIGHT;
 
+    private Animator animator;
+
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
-        m_sr = GetComponent<SpriteRenderer>();
+        m_sr = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -70,10 +73,16 @@ public class PlayerController : MonoBehaviour
                 m_facingDirection = EDirection.RIGHT;
                 m_movement += new Vector2(1f, 0f);
             }
+
+            animator.SetFloat("hSpeed", Mathf.Abs(m_movement.x));
+            animator.SetFloat("vSpeed", Mathf.Abs(m_movement.y));
         }
 
         if (Input.GetKeyDown(m_jumpKey))
+        {
             m_jump = true;
+            animator.SetBool("jump", true);
+        }
 
         if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
             m_sr.flipX = true;
@@ -108,6 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             m_jump = false;
             Jump();
+            animator.SetBool("jump", false);
         }
     }
 

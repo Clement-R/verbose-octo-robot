@@ -6,11 +6,11 @@ dirY = (keyboard_check(vk_down) - keyboard_check(vk_up))
 if (dirX != 0 or dirY !=0) {
 	direction = point_direction(x,y,x+ dirX, y + dirY);	
 	
-	if (place_free(x+dirX,y)) {
+	if (place_free(x+dirX*spd,y)) {
 		x += lengthdir_x(spd*(abs(dirX)),direction)
 	}
 	
-	if (place_free(x,y+dirY)) {
+	if (place_free(x,y+dirY*spd)) {
 		y += lengthdir_y(spd*(abs(dirY)),direction)
 	}
 }
