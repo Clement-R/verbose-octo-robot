@@ -53,3 +53,6 @@ TagManager:
   - name: PropsHigh
     uniqueID: 819279447
     locked: 0
+  - name: Weapons
+    uniqueID: 526966369
+    locked: 0

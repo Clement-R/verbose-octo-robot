@@ -761,6 +761,13 @@ MonoBehaviour:
   m_rightKey: 100
   m_speed: 4
   m_debug: 0
+  m_dashForce: {x: 400, y: 0}
+  m_dashCooldown: 2
+  m_dashDuration: 0.25
+  m_dashKey: 306
+  m_jumpKey: 32
+  m_jumpHeight: 2
+  m_jumpLength: 2
 --- !u!61 &1637774255
 BoxCollider2D:
   m_ObjectHideFlags: 0
