@@ -43,13 +43,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 m_movement = new Vector2();
     public EDirection m_facingDirection = EDirection.RIGHT;
 
-    private Animator animator;
+    private Animator m_animator;
+
+    private bool m_isJumping = false;
+    private float m_lastJump = 0f;
 
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
         m_sr = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -74,14 +77,14 @@ public class PlayerController : MonoBehaviour
                 m_movement += new Vector2(1f, 0f);
             }
 
-            animator.SetFloat("hSpeed", Mathf.Abs(m_movement.x));
-            animator.SetFloat("vSpeed", Mathf.Abs(m_movement.y));
+            m_animator.SetFloat("hSpeed", Mathf.Abs(m_movement.x));
+            m_animator.SetFloat("vSpeed", Mathf.Abs(m_movement.y));
         }
 
         if (Input.GetKeyDown(m_jumpKey))
         {
             m_jump = true;
-            animator.SetBool("jump", true);
+            m_animator.SetBool("jump", true);
         }
 
         if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
@@ -116,8 +119,20 @@ public class PlayerController : MonoBehaviour
         if (m_jump)
         {
             m_jump = false;
+            m_lastJump = Time.time;
+            m_isJumping = true;
             Jump();
-            animator.SetBool("jump", false);
+            m_animator.SetBool("jump", false);
+        }
+
+        if(m_isJumping)
+        {
+            if(Time.time >= m_lastJump + m_jumpLength)
+            {
+                m_isJumping = false;
+                m_rb2d.gravityScale = 0f;
+                m_rb2d.velocity = new Vector2(m_rb2d.velocity.x, 0f);
+            }
         }
     }
 
@@ -133,12 +148,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        m_initialVelocity = (2f * m_jumpHeight) / (m_jumpLength / 2f);
+        m_initialVelocity = 2f * m_jumpHeight / (m_jumpLength / 2f);
         m_gravity = (-2f * m_jumpHeight) / ((m_jumpLength / 2f) * (m_jumpLength / 2f));
         m_rb2d.gravityScale = m_gravity / Physics2D.gravity.y;
 
         m_rb2d.AddForce(new Vector2(0f, m_initialVelocity), ForceMode2D.Impulse);
-
-        Debug.Log(m_rb2d.gravityScale);
     }
 }
