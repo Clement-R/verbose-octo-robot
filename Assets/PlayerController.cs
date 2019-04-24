@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode m_jumpKey;
     [SerializeField] float m_jumpHeight = 0f;
     [SerializeField] float m_jumpLength = 0f;
+
+    [Header("Combat")]
+    [SerializeField] private KeyCode m_attackKey;
+    [SerializeField] private GameObject m_weapon;
+    [SerializeField] private bool m_isAttackActive = false;
+    [SerializeField] private float m_attackCooldown = 0.5f;
+    [SerializeField] private float m_attackX = 1f;
+    [SerializeField] private float m_attackY = 0.25f;
+    private bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
+    private float m_lastAttack;
 
     private float m_initialVelocity = 0f;
     private float m_gravity = 0f;
@@ -85,6 +96,36 @@ public class PlayerController : MonoBehaviour
         {
             m_jump = true;
             m_animator.SetBool("jump", true);
+        }
+
+        if (Input.GetKeyDown(m_attackKey))
+            Attack();
+
+        if(m_isAttacking /*m_isAttackActive*/)
+        {
+            Vector2 attackOrigin = new Vector2(transform.position.x + (m_sr.flipX ? -1f : 1f * (m_sr.size.x / 2f)), transform.position.y + m_sr.size.y / 2f);
+
+            Debug.DrawLine(new Vector3(attackOrigin.x - 0.15f, attackOrigin.y + 0.15f, 0f),
+                           new Vector3(attackOrigin.x + 0.15f, attackOrigin.y - 0.15f, 0f),
+                           Color.green);
+            Debug.DrawLine(new Vector3(attackOrigin.x + 0.15f, attackOrigin.y + 0.15f, 0f),
+                           new Vector3(attackOrigin.x - 0.15f, attackOrigin.y - 0.15f, 0f),
+                           Color.green);
+
+            Physics2D.OverlapBox(new Vector2(attackOrigin.x + (m_attackX / 2f), attackOrigin.y),
+                                 new Vector2(m_attackX, m_attackY), 0f);
+            // Top
+            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
+                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)));
+            // Bot
+            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)),
+                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
+            // Left
+            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
+                           new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
+            // Right
+            Debug.DrawLine(new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
+                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
         }
 
         if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
@@ -153,5 +194,21 @@ public class PlayerController : MonoBehaviour
         m_rb2d.gravityScale = m_gravity / Physics2D.gravity.y;
 
         m_rb2d.AddForce(new Vector2(0f, m_initialVelocity), ForceMode2D.Impulse);
+    }
+
+    private void Attack()
+    {
+        if(Time.time > m_lastAttack + m_attackCooldown)
+        {
+            m_lastAttack = Time.time;
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, -90f), 0.1f));
+            sequence.AppendCallback(() => { m_isAttackActive = true; });
+            sequence.AppendInterval(0.1f);
+            sequence.AppendCallback(() => { m_isAttackActive = false; });
+            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), 0.05f));
+            sequence.Play();
+        }
     }
 }

@@ -24,15 +24,15 @@ public class ObstacleMovement : MonoBehaviour
     {
         m_rb2d = GetComponent<Rigidbody2D>();
 
-        Sequence mySequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence();
 
         switch (m_movementType)
         {
             case EMovementType.BETWEEN_TRANSFORM:
-                mySequence.Append(m_rb2d.DOMove(m_endPosition, m_duration));
-                mySequence.Append(m_rb2d.DOMove(m_startPosition, m_duration));
-                mySequence.SetLoops(-1);
-                mySequence.Play();
+                sequence.Append(m_rb2d.DOMove(m_endPosition, m_duration));
+                sequence.Append(m_rb2d.DOMove(m_startPosition, m_duration));
+                sequence.SetLoops(-1);
+                sequence.Play();
                 break;
         }
     }
