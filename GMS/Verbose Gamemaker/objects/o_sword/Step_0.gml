@@ -7,7 +7,7 @@ if (object_exists(user)) {
 }
 
 if (keyboard_check_pressed(vk_space) && !isAttacking) {
-	swipe = TweenEasyTurn(direction, -120*flipX, 0, 5,EaseInOutCirc, TWEEN_MODE_BOUNCE);
+	swipe = TweenEasyTurn(direction, -45*flipX, 0, 3,EaseInOutCirc, TWEEN_MODE_BOUNCE);
 	isAttacking = true
 	//TweenPlay(swipeAnim);
 }
