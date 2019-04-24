@@ -909,10 +909,14 @@ MonoBehaviour:
   m_attackKey: 106
   m_weapon: {fileID: 933159110}
   m_isAttackActive: 0
-  m_attackCooldown: 0.5
+  m_attackCooldown: 0.2
   m_attackX: 1
   m_attackY: 0.25
   m_trail: {fileID: 657553417}
+  m_attackAnticipation: 0.1
+  m_attackStrike: 0.1
+  m_attackWait: 0.1
+  m_attackRecovery: 0.05
   m_facingDirection: 1
 --- !u!61 &1637774255
 BoxCollider2D:
@@ -998,7 +1002,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1410916915
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -127885108630083313, guid: 59ea0f55bc15b93419e02e325f3fd9eb,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
