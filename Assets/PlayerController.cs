@@ -105,8 +105,11 @@ public class PlayerController : MonoBehaviour
 
         if(m_isAttacking /*m_isAttackActive*/)
         {
-            Vector2 attackOrigin = new Vector2(transform.position.x + (m_sr.flipX ? -1f : 1f * (m_sr.size.x / 2f)), transform.position.y + m_sr.size.y / 2f);
+            float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
+            Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
+                                               transform.position.y + m_sr.size.y / 2f);
 
+            // Draw cross
             Debug.DrawLine(new Vector3(attackOrigin.x - 0.15f, attackOrigin.y + 0.15f, 0f),
                            new Vector3(attackOrigin.x + 0.15f, attackOrigin.y - 0.15f, 0f),
                            Color.green);
@@ -114,26 +117,30 @@ public class PlayerController : MonoBehaviour
                            new Vector3(attackOrigin.x - 0.15f, attackOrigin.y - 0.15f, 0f),
                            Color.green);
 
-            Physics2D.OverlapBox(new Vector2(attackOrigin.x + (m_attackX / 2f), attackOrigin.y),
-                                 new Vector2(m_attackX, m_attackY), 0f);
+            // Compute box origin and check collisions
+            Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction *(m_attackX / 2f)), attackOrigin.y);
+            Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
+            // TODO: Check for collisions with enemies and objects
+
+            // draw box
             // Top
-            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
-                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)));
+            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
+                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)));
             // Bot
-            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)),
-                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
+            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)),
+                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
             // Left
-            Debug.DrawLine(new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
-                           new Vector3(attackOrigin.x - (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
+            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
+                           new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
             // Right
-            Debug.DrawLine(new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y + (m_attackY / 2f)),
-                           new Vector3(attackOrigin.x + (m_attackX / 2f), attackOrigin.y - (m_attackY / 2f)));
+            Debug.DrawLine(new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
+                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
         }
 
-        if (m_facingDirection == EDirection.LEFT && !m_sr.flipX)
-            m_sr.flipX = true;
-        else if(m_facingDirection == EDirection.RIGHT && m_sr.flipX)
-            m_sr.flipX = false;
+        if (m_facingDirection == EDirection.LEFT && transform.rotation.y != 180f)
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        else if (m_facingDirection == EDirection.RIGHT && transform.rotation.y != 0f)
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 
         if (Input.GetKey(m_dashKey) && !m_isDashing && (Time.time >= m_lastDash + m_dashCooldown))
         {
@@ -204,10 +211,12 @@ public class PlayerController : MonoBehaviour
         {
             m_lastAttack = Time.time;
 
+            float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
+
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 25f), 0.1f));
+            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * 25f), 0.1f));
             sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
-            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, -90f), 0.1f));
+            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * -90f), 0.1f));
             sequence.AppendCallback(() => { m_isAttackActive = true; });
             sequence.AppendInterval(0.1f);
             sequence.AppendCallback(() => { m_isAttackActive = false; });
