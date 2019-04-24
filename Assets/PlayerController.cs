@@ -114,33 +114,15 @@ public class PlayerController : MonoBehaviour
             float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
             Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
                                                transform.position.y + m_sr.size.y / 2f);
-
-            // Draw cross
-            Debug.DrawLine(new Vector3(attackOrigin.x - 0.15f, attackOrigin.y + 0.15f, 0f),
-                           new Vector3(attackOrigin.x + 0.15f, attackOrigin.y - 0.15f, 0f),
-                           Color.green);
-            Debug.DrawLine(new Vector3(attackOrigin.x + 0.15f, attackOrigin.y + 0.15f, 0f),
-                           new Vector3(attackOrigin.x - 0.15f, attackOrigin.y - 0.15f, 0f),
-                           Color.green);
+            
+            VisualDebug.DrawCross(attackOrigin, 0.15f, Color.green);
 
             // Compute box origin and check collisions
             Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction *(m_attackX / 2f)), attackOrigin.y);
             Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
             // TODO: Check for collisions with enemies and objects
 
-            // draw box
-            // Top
-            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
-                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)));
-            // Bot
-            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)),
-                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
-            // Left
-            Debug.DrawLine(new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
-                           new Vector3(boxOrigin.x - (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
-            // Right
-            Debug.DrawLine(new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y + (m_attackY / 2f)),
-                           new Vector3(boxOrigin.x + (m_attackX / 2f), boxOrigin.y - (m_attackY / 2f)));
+            VisualDebug.DrawBox(boxOrigin, new Vector2(m_attackX, m_attackY), Color.cyan);
         }
 
         if (m_facingDirection == EDirection.LEFT && transform.rotation.y != 180f)
