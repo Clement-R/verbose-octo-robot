@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_attackCooldown = 0.5f;
     [SerializeField] private float m_attackX = 1f;
     [SerializeField] private float m_attackY = 0.25f;
+    [SerializeField] private TrailRenderer m_trail = null;
+
     private bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
     private float m_lastAttack;
 
@@ -203,10 +205,13 @@ public class PlayerController : MonoBehaviour
             m_lastAttack = Time.time;
 
             Sequence sequence = DOTween.Sequence();
+            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 25f), 0.1f));
+            sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
             sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, -90f), 0.1f));
             sequence.AppendCallback(() => { m_isAttackActive = true; });
             sequence.AppendInterval(0.1f);
             sequence.AppendCallback(() => { m_isAttackActive = false; });
+            sequence.AppendCallback(() => { m_trail.gameObject.SetActive(false); });
             sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), 0.05f));
             sequence.Play();
         }
