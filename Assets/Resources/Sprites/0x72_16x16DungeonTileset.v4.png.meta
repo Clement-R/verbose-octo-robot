@@ -52,7 +52,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_15
   - first:
       213: -7476853483033896908
-    second: 0x72_16x16DungeonTileset.v4_16
+    second: wall
   - first:
       213: 4338759100097701579
     second: 0x72_16x16DungeonTileset.v4_17
@@ -100,13 +100,13 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_31
   - first:
       213: -2205614050600966826
-    second: 0x72_16x16DungeonTileset.v4_32
+    second: wall_floor_0
   - first:
       213: 2846471650193226471
-    second: 0x72_16x16DungeonTileset.v4_33
+    second: wall_floor_1
   - first:
       213: 2386357339607380269
-    second: 0x72_16x16DungeonTileset.v4_34
+    second: wall_floor_2
   - first:
       213: 54058358359700898
     second: 0x72_16x16DungeonTileset.v4_35
@@ -154,7 +154,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_49
   - first:
       213: 4332630308760004205
-    second: 0x72_16x16DungeonTileset.v4_50
+    second: floor
   - first:
       213: -5030652304744387892
     second: 0x72_16x16DungeonTileset.v4_51
@@ -798,7 +798,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -810,7 +810,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -1160,15 +1160,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_16
+      name: wall
       rect:
         serializedVersion: 2
         x: 0
         y: 224
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1496,15 +1496,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_32
+      name: wall_floor_0
       rect:
         serializedVersion: 2
         x: 0
         y: 208
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1517,15 +1517,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_33
+      name: wall_floor_1
       rect:
         serializedVersion: 2
         x: 16
         y: 208
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1538,15 +1538,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_34
+      name: wall_floor_2
       rect:
         serializedVersion: 2
         x: 32
         y: 208
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1874,15 +1874,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_50
+      name: floor
       rect:
         serializedVersion: 2
         x: 32
         y: 192
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

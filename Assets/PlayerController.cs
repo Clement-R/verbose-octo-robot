@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
             VisualDebug.DrawCross(attackOrigin, 0.15f, Color.green);
 
             // Compute box origin and check collisions
-            Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction *(m_attackX / 2f)), attackOrigin.y);
+            Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
             Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
             // TODO: Check for collisions with enemies and objects
 
