@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
         {
             EnemyBehavior enemy = collisions[i].GetComponent<EnemyBehavior>();
             if (enemy != null)
-                enemy.Attack(gameObject, 10);
+                enemy.Attack(gameObject, 100);
         }
     }
 }
