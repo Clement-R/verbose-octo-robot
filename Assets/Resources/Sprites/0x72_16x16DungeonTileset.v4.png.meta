@@ -577,7 +577,7 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_190
   - first:
       213: -4266422643307610706
-    second: 0x72_16x16DungeonTileset.v4_191
+    second: wooden_dummy
   - first:
       213: -9046620184034310443
     second: 0x72_16x16DungeonTileset.v4_192
@@ -670,10 +670,10 @@ TextureImporter:
     second: 0x72_16x16DungeonTileset.v4_221
   - first:
       213: -4318929749469572261
-    second: 0x72_16x16DungeonTileset.v4_222
+    second: dummy
   - first:
       213: -2751060010058266752
-    second: 0x72_16x16DungeonTileset.v4_223
+    second: square_dummy
   - first:
       213: -1865513366290063461
     second: 0x72_16x16DungeonTileset.v4_224
@@ -4835,7 +4835,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_191
+      name: wooden_dummy
       rect:
         serializedVersion: 2
         x: 0
@@ -5486,7 +5486,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_222
+      name: dummy
       rect:
         serializedVersion: 2
         x: 0
@@ -5507,7 +5507,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v4_223
+      name: square_dummy
       rect:
         serializedVersion: 2
         x: 16

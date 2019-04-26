@@ -109,19 +109,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(m_attackKey))
             Attack();
 
-        if(m_isAttacking /*m_isAttackActive*/)
+        // Attack debug
+        if(m_isAttacking)
         {
             float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
             Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
                                                transform.position.y + m_sr.size.y / 2f);
-            
             VisualDebug.DrawCross(attackOrigin, 0.15f, Color.green);
-
-            // Compute box origin and check collisions
             Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
-            Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
-            // TODO: Check for collisions with enemies and objects
-
             VisualDebug.DrawBox(boxOrigin, new Vector2(m_attackX, m_attackY), Color.cyan);
         }
 
@@ -206,11 +201,29 @@ public class PlayerController : MonoBehaviour
             sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
             sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * -90f), m_attackStrike));
             sequence.AppendCallback(() => { m_isAttackActive = true; });
+            sequence.AppendCallback(CheckAttackCollisions);
             sequence.AppendInterval(m_attackWait);
             sequence.AppendCallback(() => { m_isAttackActive = false; });
             sequence.AppendCallback(() => { m_trail.gameObject.SetActive(false); });
             sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), m_attackRecovery));
             sequence.Play();
+        }
+    }
+
+    private void CheckAttackCollisions()
+    {
+        float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
+        Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
+                                           transform.position.y + m_sr.size.y / 2f);
+
+        Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
+
+        for (int i = 0; i < collisions.Length; i++)
+        {
+            EnemyBehavior enemy = collisions[i].GetComponent<EnemyBehavior>();
+            if (enemy != null)
+                enemy.Attack(gameObject, 10);
         }
     }
 }
