@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_attackX = 1f;
     [SerializeField] private float m_attackY = 0.25f;
     [SerializeField] private TrailRenderer m_trail = null;
-
+   
     [Header("Combat - Sword Parameters")]
     [SerializeField] private float m_attackAnticipation = 0.1f;
     [SerializeField] private float m_attackStrike = 0.1f;
@@ -217,11 +217,11 @@ public class PlayerController : MonoBehaviour
                                            transform.position.y + m_sr.size.y / 2f);
 
         Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
-        Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f);
+        Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f, LayerMask.GetMask("HitBox"));
 
         for (int i = 0; i < collisions.Length; i++)
         {
-            HealthBehaviour hittable = collisions[i].GetComponent<HealthBehaviour>();
+            HealthBehaviour hittable = collisions[i].GetComponentInParent<HealthBehaviour>();
             if (hittable != null && hittable.gameObject != gameObject)
             {
                 hittable.Hit(gameObject, 100);

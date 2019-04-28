@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - HitBox
   - 
   - 
   - 
@@ -44,15 +44,18 @@ TagManager:
   - name: Background
     uniqueID: 236668767
     locked: 0
-  - name: Props
-    uniqueID: 43445985
-    locked: 0
   - name: Character
     uniqueID: 2884050381
     locked: 0
-  - name: PropsHigh
-    uniqueID: 819279447
-    locked: 0
   - name: Weapons
     uniqueID: 526966369
+    locked: 0
+  - name: Pickable
+    uniqueID: 2259621533
+    locked: 0
+  - name: Props
+    uniqueID: 43445985
+    locked: 0
+  - name: PropsHigh
+    uniqueID: 819279447
     locked: 0
