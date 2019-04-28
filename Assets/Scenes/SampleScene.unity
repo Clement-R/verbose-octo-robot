@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &193922264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,7 +2575,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2934625191642971656}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &369057182
+--- !u!114 &369057184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2585,6 +2587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +2941,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1410916915
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -537612006178497969, guid: 59ea0f55bc15b93419e02e325f3fd9eb,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2977,6 +2981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_followDelta: 1
 --- !u!1 &993100200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8210630032736880485, guid: 44e46341832c79c4091feaadafeaf168,
@@ -3249,7 +3255,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1085078405}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1366407293
+--- !u!114 &1366407295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3261,6 +3267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &1379916732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,13 +3441,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &1466107335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1058824892748041216, guid: 44e46341832c79c4091feaadafeaf168,
     type: 3}
   m_PrefabInstance: {fileID: 2934625191642971656}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1466107336
+--- !u!114 &1466107338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3451,6 +3461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &1580134994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,7 +3522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637595367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01999998, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0.01999998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1637774258}
@@ -3577,6 +3589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_followDelta: -1
 --- !u!1 &1637774253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,6 +3807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &1680785689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,6 +3902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_followDelta: -1
 --- !u!1 &1713035717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3949,7 +3967,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1085078405}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1862488207
+--- !u!114 &1862488209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3961,6 +3979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_followParent: 0
+  m_followDelta: 0
 --- !u!1 &2005731100
 GameObject:
   m_ObjectHideFlags: 0
