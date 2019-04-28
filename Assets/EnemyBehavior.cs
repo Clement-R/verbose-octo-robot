@@ -6,15 +6,18 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float m_knockBackStrength = 2f;
     private Rigidbody2D m_rb2d;
-
-    private int m_life = 200;
-    private int m_maxLife = 200;
+    private HealthBehaviour m_healthSystem;
+    
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
+        m_healthSystem = GetComponent<HealthBehaviour>();
+
+        m_healthSystem.OnDeath += () => { Destroy(gameObject); };
+        m_healthSystem.OnHit += Attack;
     }
 
-    public void Attack(GameObject p_attacker, int p_damages)
+    private void Attack(GameObject p_attacker, int p_damages)
     {
         Debug.Log("Attacked!");
 
@@ -24,26 +27,8 @@ public class EnemyBehavior : MonoBehaviour
         else
             direction.x = 1f;
 
-        Hit(p_damages);
-        if (m_life > 0)
+        if (m_healthSystem.Life > 0)
             StartCoroutine(_KnockBackEffect(direction));
-        else
-            Die();
-    }
-
-    private void Hit(int p_amount)
-    {
-        m_life -= p_amount;
-    }
-
-    private void Heal(int p_amount)
-    {
-        m_life = Mathf.Clamp(m_life + p_amount, 0, m_maxLife);
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     private IEnumerator _KnockBackEffect(Vector2 p_direction)

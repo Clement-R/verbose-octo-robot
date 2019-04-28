@@ -221,9 +221,11 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < collisions.Length; i++)
         {
-            EnemyBehavior enemy = collisions[i].GetComponent<EnemyBehavior>();
-            if (enemy != null)
-                enemy.Attack(gameObject, 100);
+            HealthBehaviour hittable = collisions[i].GetComponent<HealthBehaviour>();
+            if (hittable != null && hittable.gameObject != gameObject)
+            {
+                hittable.Hit(gameObject, 100);
+            }
         }
     }
 }
