@@ -36,18 +36,20 @@ public class PlayerController : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] private KeyCode m_attackKey;
-    [SerializeField] private GameObject m_weapon;
+    [SerializeField] public WeaponHolder m_weapon;
     [SerializeField] private bool m_isAttackActive = false;
     [SerializeField] private float m_attackCooldown = 0.5f;
     [SerializeField] private float m_attackX = 1f;
     [SerializeField] private float m_attackY = 0.25f;
     [SerializeField] private TrailRenderer m_trail = null;
-   
+
+    /*
     [Header("Combat - Sword Parameters")]
     [SerializeField] private float m_attackAnticipation = 0.1f;
     [SerializeField] private float m_attackStrike = 0.1f;
     [SerializeField] private float m_attackWait = 0.1f;
     [SerializeField] private float m_attackRecovery = 0.05f;
+    */
 
     private bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
     private float m_lastAttack;
@@ -190,23 +192,29 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        if(Time.time > m_lastAttack + m_attackCooldown)
+        if (m_weapon.weaponData != null)
         {
-            m_lastAttack = Time.time;
+            if (Time.time > m_lastAttack + m_attackCooldown)
+            {
+                m_lastAttack = Time.time;
 
-            float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
+                float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
 
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * 25f), m_attackAnticipation));
-            sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
-            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * -90f), m_attackStrike));
-            sequence.AppendCallback(() => { m_isAttackActive = true; });
-            sequence.AppendCallback(CheckAttackCollisions);
-            sequence.AppendInterval(m_attackWait);
-            sequence.AppendCallback(() => { m_isAttackActive = false; });
-            sequence.AppendCallback(() => { m_trail.gameObject.SetActive(false); });
-            sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), m_attackRecovery));
-            sequence.Play();
+                Sequence sequence = DOTween.Sequence();
+                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * 25f), m_weapon.weaponData.attackAnticipation));
+                sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
+                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * -90f), m_weapon.weaponData.attackStrike));
+                sequence.AppendCallback(() => { m_isAttackActive = true; });
+                sequence.AppendCallback(CheckAttackCollisions);
+                sequence.AppendInterval(m_weapon.weaponData.attackWait);
+                sequence.AppendCallback(() => { m_isAttackActive = false; });
+                sequence.AppendCallback(() => { m_trail.gameObject.SetActive(false); });
+                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), m_weapon.weaponData.attackRecovery));
+                sequence.Play();
+            }
+        } else
+        {
+            Debug.Log("No weapon equipped. Cannot attack");
         }
     }
 
@@ -224,7 +232,7 @@ public class PlayerController : MonoBehaviour
             HealthBehaviour hittable = collisions[i].GetComponentInParent<HealthBehaviour>();
             if (hittable != null && hittable.gameObject != gameObject)
             {
-                hittable.Hit(gameObject, 100);
+                hittable.Hit(gameObject, m_weapon.weaponData.attackDamage);
             }
         }
     }
