@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &193922264
 GameObject:
@@ -2579,6 +2580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263143282}
   - component: {fileID: 263143283}
+  - component: {fileID: 263143284}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -2635,8 +2637,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 526966369
-  m_SortingLayer: 3
+  m_SortingLayerID: -1410916915
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2649,6 +2651,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &263143284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263143281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_parent: {fileID: 933159110}
+  m_followDelta: 1
 --- !u!1 &369057181 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1447917396197497998, guid: 44e46341832c79c4091feaadafeaf168,
@@ -2668,6 +2685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &439223878
 GameObject:
@@ -3035,6 +3053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!114 &600426915
 MonoBehaviour:
@@ -3317,6 +3336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 1
+  m_parent: {fileID: 0}
   m_followDelta: 1
 --- !u!114 &933159114
 MonoBehaviour:
@@ -3812,6 +3832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &1369657548
 GameObject:
@@ -4039,6 +4060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &1466107335 stripped
 GameObject:
@@ -4059,6 +4081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &1561430013
 GameObject:
@@ -4070,6 +4093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561430014}
   - component: {fileID: 1561430015}
+  - component: {fileID: 1561430016}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -4126,8 +4150,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 526966369
-  m_SortingLayer: 3
+  m_SortingLayerID: -1410916915
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4140,6 +4164,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1561430016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561430013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_parent: {fileID: 933159110}
+  m_followDelta: 1
 --- !u!1 &1580134994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +4306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 1
+  m_parent: {fileID: 0}
   m_followDelta: -1
 --- !u!1 &1637774253
 GameObject:
@@ -4323,10 +4363,6 @@ MonoBehaviour:
   m_attackX: 1
   m_attackY: 0.25
   m_trail: {fileID: 657553417}
-  m_attackAnticipation: 0.1
-  m_attackStrike: 0.1
-  m_attackWait: 0.1
-  m_attackRecovery: 0.05
   m_facingDirection: 1
 --- !u!61 &1637774255
 BoxCollider2D:
@@ -4485,6 +4521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &1680785689
 GameObject:
@@ -4580,6 +4617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 1
+  m_parent: {fileID: 0}
   m_followDelta: -1
 --- !u!1 &1713035717
 GameObject:
@@ -4657,6 +4695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_followParent: 0
+  m_parent: {fileID: 0}
   m_followDelta: 0
 --- !u!1 &2005731100
 GameObject:
@@ -4712,6 +4751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2059041920}
   - component: {fileID: 2059041921}
+  - component: {fileID: 2059041922}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -4768,8 +4808,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 526966369
-  m_SortingLayer: 3
+  m_SortingLayerID: -1410916915
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4782,6 +4822,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2059041922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059041919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab4be06c2fbc39438083ec917cd21ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_followParent: 1
+  m_parent: {fileID: 933159110}
+  m_followDelta: 1
 --- !u!1001 &2934625191642971656
 PrefabInstance:
   m_ObjectHideFlags: 0

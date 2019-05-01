@@ -16,9 +16,9 @@ public class WeaponHolder : MonoBehaviour
     void Start()
     {
         if (weaponData != null)
-            {
+        {
             UpdateWeapon(weaponData);
-            }
+        }
     }
 
     // Update is called once per frame
