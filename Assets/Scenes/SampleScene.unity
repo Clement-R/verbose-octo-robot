@@ -120,75 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &91609340
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6032430733993975959, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_Name
-      value: Room_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1418203383832203223, guid: 30252ec37d33e854d93e9c04d353b7b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 30252ec37d33e854d93e9c04d353b7b0, type: 3}
 --- !u!1 &263143281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,20 +1041,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e2708c00689db4c805cf0f1a752978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_upKey: 122
-  m_downKey: 115
-  m_leftKey: 113
-  m_rightKey: 100
   m_speed: 4
-  m_debug: 0
   m_dashForce: {x: 400, y: 0}
   m_dashCooldown: 2
   m_dashDuration: 0.25
-  m_dashKey: 306
-  m_jumpKey: 32
   m_jumpHeight: 2
   m_jumpLength: 0.25
-  m_attackKey: 106
   m_weapon: {fileID: 933159114}
   m_isAttackActive: 0
   m_attackCooldown: 0.2
@@ -1131,6 +1054,14 @@ MonoBehaviour:
   m_attackY: 0.25
   m_trail: {fileID: 657553417}
   m_facingDirection: 1
+  m_upKey: 122
+  m_downKey: 115
+  m_leftKey: 113
+  m_rightKey: 100
+  m_dashKey: 306
+  m_jumpKey: 32
+  m_attackKey: 106
+  m_debug: 0
 --- !u!61 &1637774255
 BoxCollider2D:
   m_ObjectHideFlags: 0
