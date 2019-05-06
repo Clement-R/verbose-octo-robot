@@ -43,14 +43,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_attackY = 0.25f;
     [SerializeField] private TrailRenderer m_trail = null;
 
-    /*
-    [Header("Combat - Sword Parameters")]
-    [SerializeField] private float m_attackAnticipation = 0.1f;
-    [SerializeField] private float m_attackStrike = 0.1f;
-    [SerializeField] private float m_attackWait = 0.1f;
-    [SerializeField] private float m_attackRecovery = 0.05f;
-    */
-
     private bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
     private float m_lastAttack;
 
