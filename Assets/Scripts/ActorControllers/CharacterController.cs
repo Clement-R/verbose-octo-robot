@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public Vector2 Direction = new Vector2();
+    public float Speed { get { return m_speed;  } }
+
     [SerializeField] protected float m_speed = 2f;
 
     [Header("Dash")]
@@ -31,11 +34,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected float m_attackY = 0.25f;
     [SerializeField] protected TrailRenderer m_trail = null;
 
+    public EDirection m_facingDirection = EDirection.RIGHT;
+
     protected Rigidbody2D m_rb2d;
     protected SpriteRenderer m_sr;
-
-    protected Vector2 m_movement = new Vector2();
-    public EDirection m_facingDirection = EDirection.RIGHT;
 
     protected bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
     protected float m_lastAttack;
@@ -48,7 +50,7 @@ public class CharacterController : MonoBehaviour
 
     protected void Move(Vector2 p_movement)
     {
-        m_rb2d.velocity = m_movement * m_speed;
+        m_rb2d.velocity = Direction * m_speed;
     }
 
     protected void Dash()
@@ -67,7 +69,7 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        Move(m_movement);
+        Move(Direction);
 
         if (m_isDashing)
         {

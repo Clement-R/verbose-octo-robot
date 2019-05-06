@@ -111,6 +111,8 @@ GameObject:
   - component: {fileID: 1488744339892838172}
   - component: {fileID: 1488744339892838175}
   - component: {fileID: 1488744339892838174}
+  - component: {fileID: 8325896873912326738}
+  - component: {fileID: 3693832500765869813}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -271,6 +273,45 @@ MonoBehaviour:
   m_followParent: 0
   m_parent: {fileID: 0}
   m_followDelta: 0
+--- !u!114 &8325896873912326738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488744339892838241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14de1644d5d0f33479e49b39556bd1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {x: 0, y: 0}
+  m_speed: 0.5
+  m_dashForce: {x: 0, y: 0}
+  m_dashCooldown: 0
+  m_dashDuration: 0.25
+  m_jumpHeight: 0
+  m_jumpLength: 0
+  m_weapon: {fileID: 0}
+  m_isAttackActive: 0
+  m_attackCooldown: 0.5
+  m_attackX: 1
+  m_attackY: 0.25
+  m_trail: {fileID: 0}
+  m_facingDirection: 1
+--- !u!114 &3693832500765869813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488744339892838241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d149874415f03d346ad40ebdd331dd0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_safeDistance: 0.25
 --- !u!1 &1488744340323063156
 GameObject:
   m_ObjectHideFlags: 0

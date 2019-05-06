@@ -34,28 +34,28 @@ public class PlayerController : CharacterController
 
     void Update()
     {
-        m_movement = Vector2.zero;
+        Direction = Vector2.zero;
 
         if(!m_isDashing)
         {
             if (Input.GetKey(m_upKey))
-                m_movement += new Vector2(0f, 1f);
+                Direction += new Vector2(0f, 1f);
             else if (Input.GetKey(m_downKey))
-                m_movement += new Vector2(0f, -1f);
+                Direction += new Vector2(0f, -1f);
 
             if (Input.GetKey(m_leftKey))
             {
                 m_facingDirection = EDirection.LEFT;
-                m_movement += new Vector2(-1f, 0f);
+                Direction += new Vector2(-1f, 0f);
             }
             else if (Input.GetKey(m_rightKey))
             {
                 m_facingDirection = EDirection.RIGHT;
-                m_movement += new Vector2(1f, 0f);
+                Direction += new Vector2(1f, 0f);
             }
 
-            m_animator.SetFloat("hSpeed", Mathf.Abs(m_movement.x));
-            m_animator.SetFloat("vSpeed", Mathf.Abs(m_movement.y));
+            m_animator.SetFloat("hSpeed", Mathf.Abs(Direction.x));
+            m_animator.SetFloat("vSpeed", Mathf.Abs(Direction.y));
         }
 
         if (Input.GetKeyDown(m_jumpKey))
