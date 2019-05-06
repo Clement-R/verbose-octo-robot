@@ -10,61 +10,25 @@ public enum EDirection
     RIGHT = 1
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterController
 {
-
+    [Header("Keys")]
     [SerializeField] private KeyCode m_upKey;
     [SerializeField] private KeyCode m_downKey;
     [SerializeField] private KeyCode m_leftKey;
     [SerializeField] private KeyCode m_rightKey;
+    [SerializeField] protected KeyCode m_dashKey;
+    [SerializeField] protected KeyCode m_jumpKey;
+    [SerializeField] protected KeyCode m_attackKey;
 
-    [SerializeField] private float m_speed = 2f;
+    [Header("Debug")]
     [SerializeField] private bool m_debug = false;
-
-    [Header("Dash")]
-    [SerializeField] private Vector2 m_dashForce = new Vector2();
-    [SerializeField] private float m_dashCooldown = 0f;
-    [SerializeField] private float m_dashDuration = 0.25f;
-    [SerializeField] private KeyCode m_dashKey;
-    private bool m_isDashing;
-    private float m_lastDash = 0f;
-
-    [Header("Jump")]
-    [SerializeField] private KeyCode m_jumpKey;
-    [SerializeField] float m_jumpHeight = 0f;
-    [SerializeField] float m_jumpLength = 0f;
-
-    [Header("Combat")]
-    [SerializeField] private KeyCode m_attackKey;
-    [SerializeField] public WeaponHolder m_weapon;
-    [SerializeField] private bool m_isAttackActive = false;
-    [SerializeField] private float m_attackCooldown = 0.5f;
-    [SerializeField] private float m_attackX = 1f;
-    [SerializeField] private float m_attackY = 0.25f;
-    [SerializeField] private TrailRenderer m_trail = null;
-
-    private bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
-    private float m_lastAttack;
-
-    private float m_initialVelocity = 0f;
-    private float m_gravity = 0f;
-    private bool m_grounded = true;
-    private bool m_jump = false;
-
-    private Rigidbody2D m_rb2d;
-    private SpriteRenderer m_sr;
-    private Vector2 m_movement = new Vector2();
-    public EDirection m_facingDirection = EDirection.RIGHT;
 
     private Animator m_animator;
 
-    private bool m_isJumping = false;
-    private float m_lastJump = 0f;
-
-    void Start()
+    protected override void Start()
     {
-        m_rb2d = GetComponent<Rigidbody2D>();
-        m_sr = GetComponentInChildren<SpriteRenderer>();
+        base.Start();
         m_animator = GetComponent<Animator>();
     }
 
@@ -131,56 +95,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        Move(m_movement);
+        base.FixedUpdate();
 
-        if (m_isDashing)
+        if(m_jump)
         {
-            Dash();
-
-            if (Time.time >= m_lastDash + m_dashDuration)
-                m_isDashing = false;
-        }
-
-        if (m_jump)
-        {
-            m_jump = false;
-            m_lastJump = Time.time;
-            m_isJumping = true;
-            Jump();
             m_animator.SetBool("jump", false);
         }
-
-        if(m_isJumping)
-        {
-            if(Time.time >= m_lastJump + m_jumpLength)
-            {
-                m_isJumping = false;
-                m_rb2d.gravityScale = 0f;
-                m_rb2d.velocity = new Vector2(m_rb2d.velocity.x, 0f);
-            }
-        }
     }
 
-    private void Move(Vector2 p_movement)
-    {
-        m_rb2d.velocity = m_movement * m_speed;
-    }
-
-    private void Dash()
-    {
-        m_rb2d.AddForce(m_dashForce * (m_facingDirection == EDirection.RIGHT ? 1f : -1f), ForceMode2D.Force);
-    }
-
-    private void Jump()
-    {
-        m_initialVelocity = 2f * m_jumpHeight / (m_jumpLength / 2f);
-        m_gravity = (-2f * m_jumpHeight) / ((m_jumpLength / 2f) * (m_jumpLength / 2f));
-        m_rb2d.gravityScale = m_gravity / Physics2D.gravity.y;
-
-        m_rb2d.AddForce(new Vector2(0f, m_initialVelocity), ForceMode2D.Impulse);
-    }
+    //! Move this part to a weapon part or something ? Let it do it's own
+    //! animations and collision things
 
     private void Attack()
     {
@@ -192,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
                 float direction = m_facingDirection == EDirection.LEFT ? -1f : 1f;
 
+                // TODO: Externalize this to a Weapon script ?
                 Sequence sequence = DOTween.Sequence();
                 sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * 25f), m_weapon.weaponData.attackAnticipation));
                 sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
