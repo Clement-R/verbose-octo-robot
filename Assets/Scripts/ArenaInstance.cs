@@ -23,17 +23,16 @@ public class ArenaInstance : MonoBehaviour
 
     private void StartBattle(Collider2D p_collider)
     {
-        Debug.Log("Start battle !");
-
         if(p_collider.gameObject.CompareTag("Player") && !m_isBattleStarted)
         {
+            Debug.Log("Start battle !");
+
             m_isBattleStarted = true;
             m_walls.SetActive(true);
+
+            m_waveManager.StartBattle();
+            OnEnterArena?.Invoke();
         }
-
-        m_waveManager.StartBattle();
-
-        OnEnterArena?.Invoke();
     }
 
     private void EndBattle()
