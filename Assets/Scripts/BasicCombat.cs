@@ -25,7 +25,7 @@ public class BasicCombat : MonoBehaviour
             c_swipe.Play();
         }
 
-        if (player.m_facingDirection == EDirection.LEFT)
+        if (player.FacingDirection == EDirection.LEFT)
         {
             transform.localScale = new Vector3(.5f, -.5f, -.5f);
         } else

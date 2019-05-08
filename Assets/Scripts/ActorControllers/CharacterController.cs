@@ -28,19 +28,20 @@ public class CharacterController : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] public WeaponHolder m_weapon;
-    [SerializeField] protected bool m_isAttackActive = false;
     [SerializeField] protected float m_attackCooldown = 0.5f;
     [SerializeField] protected float m_attackX = 1f;
     [SerializeField] protected float m_attackY = 0.25f;
     [SerializeField] protected TrailRenderer m_trail = null;
+    public bool IsAttackActive = false;
 
-    public EDirection m_facingDirection = EDirection.RIGHT;
+    public EDirection FacingDirection = EDirection.RIGHT;
 
     protected Rigidbody2D m_rb2d;
     protected SpriteRenderer m_sr;
 
-    protected bool m_isAttacking { get { return Time.time < m_lastAttack + m_attackCooldown; } }
-    protected float m_lastAttack;
+    public bool CanAttack { get { return Time.time > LastAttack + m_attackCooldown; } }
+    public float LastAttack;
+    public bool IsAttacking { get { return Time.time < LastAttack + m_attackCooldown; } }
 
     protected virtual void Start()
     {
@@ -55,7 +56,7 @@ public class CharacterController : MonoBehaviour
 
     protected void Dash()
     {
-        m_rb2d.AddForce(m_dashForce * (m_facingDirection == EDirection.RIGHT ? 1f : -1f), ForceMode2D.Force);
+        m_rb2d.AddForce(m_dashForce * (FacingDirection == EDirection.RIGHT ? 1f : -1f), ForceMode2D.Force);
     }
 
     protected void Jump()
