@@ -38,8 +38,6 @@ public class PlayerController : CharacterController
 
     private void GetAttacked(GameObject p_attacker, int p_damages)
     {
-        Debug.Log("Attacked!");
-
         Vector2 direction = new Vector2(0f, 0f);
         if (p_attacker.transform.position.x > transform.position.x)
             direction.x = -1f;

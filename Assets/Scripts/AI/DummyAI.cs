@@ -47,7 +47,6 @@ public class DummyAI : MonoBehaviour
             }
             else
             {
-                Debug.Log("Attack");
                 Attack();
                 color = Color.green;
             }

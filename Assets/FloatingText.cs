@@ -9,7 +9,7 @@ public class FloatingText : MonoBehaviour
 {
     private TextMeshPro m_text;
 
-    private void Start()
+    private void Awake()
     {
         m_text = GetComponent<TextMeshPro>();
 
@@ -60,5 +60,8 @@ public class FloatingText : MonoBehaviour
         transform.position = new Vector3(transform.position.x,
                                          startY,
                                          transform.position.z);
+
+        yield return null;
+        Destroy(gameObject);
     }
 }
