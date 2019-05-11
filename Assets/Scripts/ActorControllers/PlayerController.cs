@@ -12,6 +12,8 @@ public enum EDirection
 
 public class PlayerController : CharacterController
 {
+    public BasicCombat Combat;
+
     [Header("Keys")]
     [SerializeField] private KeyCode m_upKey;
     [SerializeField] private KeyCode m_downKey;
@@ -31,6 +33,8 @@ public class PlayerController : CharacterController
     {
         base.Start();
         m_animator = GetComponent<Animator>();
+        Combat = GetComponent<BasicCombat>();
+        
         m_healthSystem = GetComponent<HealthBehaviour>();
 
         m_healthSystem.OnHit += GetAttacked;
@@ -102,19 +106,8 @@ public class PlayerController : CharacterController
         }
 
         if (Input.GetKeyDown(m_attackKey))
-            Attack();
-
-        // Attack debug
-        if(IsAttacking)
-        {
-            float direction = FacingDirection == EDirection.LEFT ? -1f : 1f;
-            Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
-                                               transform.position.y + m_sr.size.y / 2f);
-            VisualDebug.DrawCross(attackOrigin, 0.15f, Color.green);
-            Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
-            VisualDebug.DrawBox(boxOrigin, new Vector2(m_attackX, m_attackY), Color.cyan);
-        }
-
+            Combat.Attack();
+        
         if (FacingDirection == EDirection.LEFT && transform.rotation.y != 180f)
             transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
         else if (FacingDirection == EDirection.RIGHT && transform.rotation.y != 0f)
@@ -139,57 +132,6 @@ public class PlayerController : CharacterController
         if(m_jump)
         {
             m_animator.SetBool("jump", false);
-        }
-    }
-
-    //! Move this part to a weapon part or something ? Let it do it's own
-    //! animations and collision things
-
-    private void Attack()
-    {
-        if (m_weapon.weaponData != null)
-        {
-            if (Time.time > LastAttack + m_attackCooldown)
-            {
-                LastAttack = Time.time;
-
-                float direction = FacingDirection == EDirection.LEFT ? -1f : 1f;
-
-                // TODO: Externalize this to a Weapon script ?
-                Sequence sequence = DOTween.Sequence();
-                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * 25f), m_weapon.weaponData.attackAnticipation));
-                sequence.AppendCallback(() => { m_trail.gameObject.SetActive(true); });
-                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, direction * -90f), m_weapon.weaponData.attackStrike));
-                sequence.AppendCallback(() => { IsAttackActive = true; });
-                sequence.AppendCallback(CheckAttackCollisions);
-                sequence.AppendInterval(m_weapon.weaponData.attackWait);
-                sequence.AppendCallback(() => { IsAttackActive = false; });
-                sequence.AppendCallback(() => { m_trail.gameObject.SetActive(false); });
-                sequence.Append(m_weapon.transform.DORotate(new Vector3(0f, 0f, 0f), m_weapon.weaponData.attackRecovery));
-                sequence.Play();
-            }
-        } else
-        {
-            Debug.Log("No weapon equipped. Cannot attack");
-        }
-    }
-
-    private void CheckAttackCollisions()
-    {
-        float direction = FacingDirection == EDirection.LEFT ? -1f : 1f;
-        Vector2 attackOrigin = new Vector2(transform.position.x + (direction * (m_sr.size.x / 2f)),
-                                           transform.position.y + m_sr.size.y / 2f);
-
-        Vector2 boxOrigin = new Vector2(attackOrigin.x + (direction * (m_attackX / 2f)), attackOrigin.y);
-        Collider2D[] collisions = Physics2D.OverlapBoxAll(boxOrigin, new Vector2(m_attackX, m_attackY), 0f, LayerMask.GetMask("HitBox"));
-
-        for (int i = 0; i < collisions.Length; i++)
-        {
-            HealthBehaviour hittable = collisions[i].GetComponentInParent<HealthBehaviour>();
-            if (hittable != null && hittable.gameObject != gameObject)
-            {
-                hittable.Hit(gameObject, m_weapon.weaponData.attackDamage);
-            }
         }
     }
 }

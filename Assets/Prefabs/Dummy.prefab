@@ -113,9 +113,10 @@ GameObject:
   - component: {fileID: 1488744339892838174}
   - component: {fileID: 8325896873912326738}
   - component: {fileID: 3693832500765869813}
+  - component: {fileID: 1507957895907339866}
   m_Layer: 0
   m_Name: Dummy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +134,7 @@ Transform:
   m_Children:
   - {fileID: 1488744339591824839}
   - {fileID: 1488744340323063159}
-  - {fileID: 8303093085681108028}
+  - {fileID: 4441443985336003910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,7 +179,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -2751060010058266752, guid: 59ea0f55bc15b93419e02e325f3fd9eb,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -226,6 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_knockBackStrength: 2
+  m_deathEffect: {fileID: 8964482909504878058, guid: ce786dbfccfda414dbe1c1c70ddbccf0,
+    type: 3}
 --- !u!50 &1488744339892838172
 Rigidbody2D:
   serializedVersion: 4
@@ -295,14 +298,7 @@ MonoBehaviour:
   m_dashDuration: 0.25
   m_jumpHeight: 0
   m_jumpLength: 0
-  m_weapon: {fileID: 0}
-  m_attackCooldown: 1
-  m_attackX: 1
-  m_attackY: 0.25
-  m_trail: {fileID: 0}
-  IsAttackActive: 0
   FacingDirection: 1
-  LastAttack: 0
 --- !u!114 &3693832500765869813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +314,25 @@ MonoBehaviour:
   m_safeDistance: 1
   m_attackX: 1
   m_attackY: 0.25
+--- !u!114 &1507957895907339866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488744339892838241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e29b5135deab9745950c39ff16f9962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LastAttack: 0
+  TargetTag: Player
+  IsAttackActive: 0
+  m_attackCooldown: 0.5
+  m_attackX: 1
+  m_attackY: 0.25
+  m_damage: 25
 --- !u!1 &1488744340323063156
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +345,7 @@ GameObject:
   - component: {fileID: 1488744340323063158}
   m_Layer: 8
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +390,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.85}
   m_EdgeRadius: 0
---- !u!1001 &3253441944539719596
+--- !u!1001 &7187501844218531542
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -390,17 +405,17 @@ PrefabInstance:
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.378
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.903
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4682617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
@@ -444,9 +459,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb19e45d6f29614e907e1a8d58d10ca, type: 3}
---- !u!4 &8303093085681108028 stripped
+--- !u!4 &4441443985336003910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
     type: 3}
-  m_PrefabInstance: {fileID: 3253441944539719596}
+  m_PrefabInstance: {fileID: 7187501844218531542}
   m_PrefabAsset: {fileID: 0}

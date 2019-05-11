@@ -26,22 +26,10 @@ public class CharacterController : MonoBehaviour
     protected bool m_isJumping = false;
     protected float m_lastJump = 0f;
 
-    [Header("Combat")]
-    [SerializeField] public WeaponHolder m_weapon;
-    [SerializeField] protected float m_attackCooldown = 0.5f;
-    [SerializeField] protected float m_attackX = 1f;
-    [SerializeField] protected float m_attackY = 0.25f;
-    [SerializeField] protected TrailRenderer m_trail = null;
-    public bool IsAttackActive = false;
-
     public EDirection FacingDirection = EDirection.RIGHT;
 
     protected Rigidbody2D m_rb2d;
     protected SpriteRenderer m_sr;
-
-    public bool CanAttack { get { return Time.time > LastAttack + m_attackCooldown; } }
-    public float LastAttack;
-    public bool IsAttacking { get { return Time.time < LastAttack + m_attackCooldown; } }
 
     protected virtual void Start()
     {

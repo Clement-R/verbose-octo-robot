@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float m_knockBackStrength = 2f;
+    [SerializeField] private GameObject m_deathEffect;
     private Rigidbody2D m_rb2d;
     private HealthBehaviour m_healthSystem;
     
@@ -13,8 +14,14 @@ public class EnemyBehavior : MonoBehaviour
         m_rb2d = GetComponent<Rigidbody2D>();
         m_healthSystem = GetComponent<HealthBehaviour>();
 
-        m_healthSystem.OnDeath += () => { Destroy(gameObject); };
+        m_healthSystem.OnDeath += Death;
         m_healthSystem.OnHit += Attack;
+    }
+
+    private void Death()
+    {
+        Instantiate(m_deathEffect, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void Attack(GameObject p_attacker, int p_damages)

@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229ad33bd17d57f489e6bae8261757bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  WeaponData: {fileID: 0}
   handleSprite: {fileID: 1679198177061477716}
   guardSprite: {fileID: 1679198176227435992}
   bladeSprite: {fileID: 1679198176546940458}
@@ -485,7 +485,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 1679198177002285336}
   - component: {fileID: 1679198177002285343}
   - component: {fileID: 1679198177002285342}
+  - component: {fileID: 865368340545028224}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -634,7 +635,7 @@ Transform:
   - {fileID: 1679198177002103363}
   - {fileID: 1679198175559481955}
   - {fileID: 1679198176948856339}
-  - {fileID: 7013850866478201844}
+  - {fileID: 2070547103328260052}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -754,14 +755,8 @@ MonoBehaviour:
   m_dashDuration: 0.25
   m_jumpHeight: 2
   m_jumpLength: 0.25
-  m_weapon: {fileID: 1679198175559481953}
-  m_attackCooldown: 0.2
-  m_attackX: 1
-  m_attackY: 0.25
-  m_trail: {fileID: 1679198175817851554}
-  IsAttackActive: 0
   FacingDirection: 1
-  LastAttack: 0
+  Combat: {fileID: 0}
   m_upKey: 122
   m_downKey: 115
   m_leftKey: 113
@@ -818,6 +813,27 @@ MonoBehaviour:
   m_followParent: 0
   m_parent: {fileID: 0}
   m_followDelta: 0
+--- !u!114 &865368340545028224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679198177002285318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9d82d9cb24f22408d6977dbb6db860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LastAttack: 0
+  TargetTag: Enemy
+  IsAttackActive: 0
+  m_attackCooldown: 0.5
+  m_attackX: 1
+  m_attackY: 0.25
+  m_damage: 25
+  Weapon: {fileID: 1679198175559481953}
+  m_trail: {fileID: 1679198175817851554}
 --- !u!1 &1679198177061477718
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +963,7 @@ Transform:
   m_Father: {fileID: 1679198175559481955}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!1001 &4560522644765317220
+--- !u!1001 &4800837768441457732
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -962,7 +978,7 @@ PrefabInstance:
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.31978846
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
@@ -972,7 +988,7 @@ PrefabInstance:
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4682617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
         type: 3}
@@ -1016,9 +1032,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb19e45d6f29614e907e1a8d58d10ca, type: 3}
---- !u!4 &7013850866478201844 stripped
+--- !u!4 &2070547103328260052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6781311758232658832, guid: 1cb19e45d6f29614e907e1a8d58d10ca,
     type: 3}
-  m_PrefabInstance: {fileID: 4560522644765317220}
+  m_PrefabInstance: {fileID: 4800837768441457732}
   m_PrefabAsset: {fileID: 0}

@@ -38,11 +38,11 @@ public class Chest : MonoBehaviour
     {
         if (isOpen)
         {
-            if (other.GetComponent<PlayerController>() != null)
+            if (other.GetComponent<PlayerCombat>() != null)
             {
-                var player = other.GetComponent<PlayerController>();
+                var player = other.GetComponent<PlayerCombat>();
 
-                if (player.m_weapon.PickUpWeapon(m_Loot))
+                if (player.Weapon.PickUpWeapon(m_Loot))
                 {
                     // Close the chest
                     m_Loot = null;
@@ -51,7 +51,7 @@ public class Chest : MonoBehaviour
                 }
                 else
                 {
-
+                    // TODO: Is this useful ?
                 }
             }
         }

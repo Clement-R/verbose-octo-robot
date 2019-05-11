@@ -19,12 +19,15 @@ public class HealthBarBehaviour : MonoBehaviour
         m_healthBehaviour.OnHeal += (int p_amount) => { UpdateLife(); };
     }
 
+    private void Update()
+    {
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
     private void UpdateLife()
     {
         Vector3 scale = m_lifeBar.gameObject.transform.localScale;
         float ratio = ((float)m_healthBehaviour.Life) / m_healthBehaviour.MaxLife;
-
-        Debug.Log(m_healthBehaviour.Life + " / " + m_healthBehaviour.MaxLife + " || " + ratio);
 
         m_lifeBar.gameObject.transform.localScale = new Vector3(ratio, scale.y, scale.z);
     }

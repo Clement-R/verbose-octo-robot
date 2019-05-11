@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public Action<WeaponData> OnWeaponChange;
 
-    public WeaponData weaponData;
+    public WeaponData WeaponData;
 
     [SerializeField] private SpriteRenderer handleSprite;
     [SerializeField] private SpriteRenderer guardSprite;
@@ -13,16 +15,16 @@ public class WeaponHolder : MonoBehaviour
 
     void Start()
     {
-        if (weaponData != null)
+        if (WeaponData != null)
         {
-            UpdateWeapon(weaponData);
+            UpdateWeapon(WeaponData);
         }
     }
 
     public bool PickUpWeapon(WeaponData w)
     {
-        weaponData = w;
-        UpdateWeapon(weaponData);
+        WeaponData = w;
+        UpdateWeapon(WeaponData);
         return true;
     }
 
@@ -31,17 +33,19 @@ public class WeaponHolder : MonoBehaviour
         handleSprite.sprite = w.handle;
         guardSprite.sprite = w.guard;
         bladeSprite.sprite = w.blade;
+
+        OnWeaponChange?.Invoke(w);
     }
 
-    private void OnValidate()
-    {
-        if (weaponData != null)
-        {
-            UpdateWeapon(weaponData);
-        }
-        else
-        {
-            handleSprite.sprite = guardSprite.sprite = bladeSprite.sprite = null;
-        }
-    }
+    //private void OnValidate()
+    //{
+    //    if (WeaponData != null)
+    //    {
+    //        UpdateWeapon(WeaponData);
+    //    }
+    //    else
+    //    {
+    //        handleSprite.sprite = guardSprite.sprite = bladeSprite.sprite = null;
+    //    }
+    //}
 }
